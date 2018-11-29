@@ -1,2 +1,2 @@
 # PHP-MVC-Frameworks-Symfony
-SofUni Course
+Sofware University Course
