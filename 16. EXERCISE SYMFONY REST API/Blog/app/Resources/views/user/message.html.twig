@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <div>
+        <p>From: {{ msg.sender.fullName }}</p>
+        <p>About: {{ msg.about }}</p>
+        <p>Content: {{ msg.content }}</p>
+        <p>Date: {{ msg.dateAdded|date('F jS g:i a', 'Europe/Sofia') }}</p>
+    </div>
+
+    <button class="btn btn-success btn-sm" id="btnMessage">Answer</button>
+    <hr>
+
+    <div id="form"></div>
+
+    <script>
+        let form = $(`
+            <form method="post">
+                About
+                <label>
+                    <input type="text" name="message[about]">
+                </label>
+                <br>
+                Content
+                <label>
+                    <textarea rows="10" name="message[content]"></textarea>
+                </label>
+                {{ form_row(form._token) }}
+                <br>
+                <input type="submit" value="Send"><br>
+            </form>
+        `);
+
+        $('#btnMessage').click(function (e) {
+            e.preventDefault();
+            $('#form').append(form);
+            $('#form').toggle();
+        });
+    </script>
+
+    <div class="pull-right">
+        <a class="btn btn-default btn-xs" href="{{ path('user_mailbox') }}">Back &raquo;</a>
+    </div>
+{% endblock %}
+

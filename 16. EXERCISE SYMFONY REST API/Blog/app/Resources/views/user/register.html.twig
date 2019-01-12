@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    {% for msg in app.session.flashbag.get('info') %}
+        <div class=container>
+            <div class="alert alert-danger">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                <strong>{{ msg }}</strong>
+            </div>
+        </div>
+    {% endfor %}
+
+    <form name="register" action="{{ path('user_register') }}" method="post">
+        <label>Email:
+            <input type="text" name="user[email]"/>
+        </label>
+        <br/>
+        <label>Password:
+            <input type="password" name="user[password]"/>
+        </label>
+        <br/>
+        <label>Full name:
+            <input type="text" name="user[fullName]"/>
+        </label>
+        <br/>
+        <br/>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('register') }}"/>
+        <input type="submit" value="Register"/>
+
+        {{ form_row(form._token) }}
+    </form>
+{% endblock %}

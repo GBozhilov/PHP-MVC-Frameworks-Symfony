@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    {% for msg in messages %}
+
+        {% if msg.readed %}
+
+            <p>
+                Message from:
+                <a href="{{ path('user_current_message', {'id': msg.id}) }}">
+                    {{ msg.sender.email }} ({{ msg.sender.fullName }})
+                </a>
+
+                <span style="float: right; color: green">Readed</span>
+            </p>
+
+        {% else %}
+
+            <p>
+                Message from:
+                <a href="{{ path('user_current_message', {'id': msg.id}) }}">
+                    {{ msg.sender.email }} ({{ msg.sender.fullName }})
+                </a>
+
+                <span style="float: right; color: red">Unread</span>
+            </p>
+
+        {% endif %}
+
+        <hr>
+
+    {% endfor %}
+
+    <div class="pull-right">
+        <a class="btn btn-default btn-xs" href="{{ path('user_profile') }}">Back &raquo;</a>
+    </div>
+
+{% endblock %}

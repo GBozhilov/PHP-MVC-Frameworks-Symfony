@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    <h1>Hello, {{ user.fullName }} :)</h1>
+
+    {% if countMsg %}
+
+        <a href="{{ path('user_mailbox') }}">
+            <span class="glyphicon glyphicon-envelope" style="font-size:45px;">({{ countMsg }})</span>
+        </a>
+
+    {% else %}
+
+        <a href="{{ path('user_mailbox') }}">
+            <span class="glyphicon glyphicon-envelope" style="font-size:45px;"></span>
+        </a>
+
+    {% endif %}
+
+{% endblock %}

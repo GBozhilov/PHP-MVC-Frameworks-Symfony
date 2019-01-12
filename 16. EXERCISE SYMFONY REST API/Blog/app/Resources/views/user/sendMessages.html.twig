@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+    {% for msg in app.session.flashbag.get('message') %}
+        <div id="msg" class=container>
+            <div class="alert alert-success">
+                {#<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>#}
+                <strong>{{ msg }}</strong>
+            </div>
+        </div>
+    {% endfor %}
+
+    <form method="post">
+        About
+        <label>
+            <input type="text" name="message[about]">
+        </label>
+        <br>
+        Content
+        <label>
+            <textarea rows="10" name="message[content]"></textarea>
+        </label>
+        {{ form_row(form._token) }}
+        <br>
+        <input type="submit" value="Send"><br>
+    </form>
+
+{% endblock %}
+
